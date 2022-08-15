@@ -33,3 +33,12 @@ jobs:
     - run: make -C tests clean ; make -C tests pedantic EXTRA_CFLAGS=-DNO_DECLTYPE
     - run: make -C tests clean ; make -C tests cplusplus
     - run: make -C tests clean ; make -C tests cplusplus EXTRA_CFLAGS=-DNO_DECLTYPE
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: make -C tests EXTRA_CFLAGS="-W -Wall -Wextra -Wswitch-default"
+    - run: make -C tests clean ; make -C tests pedantic
+    - run: make -C tests clean ; make -C tests pedantic EXTRA_CFLAGS=-DNO_DECLTYPE
+    - run: make -C tests clean ; make -C tests cplusplus
+    - run: make -C tests clean ; make -C tests cplusplus EXTRA_CFLAGS=-DNO_DECLTYPE
